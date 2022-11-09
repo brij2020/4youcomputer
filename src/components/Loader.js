@@ -38,7 +38,7 @@ function Loader(props) {
           spinner={<BounceLoader loading={true} color="red" size={20} margin={20} />}
           text={"Loading ..."}
         >
-          // <p>Some content or children or something.</p>
+          {/* <p>Some content or children or something.</p> */}
         </LoadingOverlay>
       </DarkBackground>
     </div>
