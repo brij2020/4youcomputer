@@ -77,22 +77,20 @@ a {
 .left-container{
 	 position: absolute;
     left: 7px;
-    width: 17%;
+    /*width: 17%;*/
     z-index: 100;
 }
 
 
 /* Side bar  filter*/
 .myaccordion {
-	
-  box-shadow: 0 0 1px rgba(0,0,0,0.1);
-  background: #c8c8eb87;
-  max-width: 500px;
-  box-shadow: 0 0 1px rgb(0 0 0 / 10%);
-  border-radius: 10px;
-  margin-left: 10px;
-  overflow-y: auto;
-  height: 750px
+ background: #fefefe;
+    max-width: 500px;
+    box-shadow: 1px 2px 11px 11px rgb(0 0 0 / 6%);
+    border-radius: 10px;
+    margin-left: 10px;
+    overflow-y: auto;
+    height: 750px;
 }
 
 .myaccordion .card,
@@ -361,7 +359,7 @@ a {
 @media only screen and (max-width: 600px) {
   #sidebar{
     width: 380px;
-    background: aliceblue;
+    /*background: aliceblue;*/
     position: fixed;
   }
   #sidebar >i {
@@ -396,3 +394,125 @@ a {
   font-size: 27px;
   margin-left: 15px;
 }
+
+/* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 600px) and (max-width: 1000px){
+    .left-container {
+      width: 50%;
+    }
+  #sidebar{
+    width: 380px;
+    /*background: aliceblue;*/
+    position: fixed;
+  }
+  #sidebar >i {
+    position: absolute;
+    left: 88%;
+    top: 86%;
+    font-size: 25px;
+    color: red;
+    display: inline-block;
+  }
+  #sidebar >i {
+    display: inline-grid;
+    place-content: center;
+    aspect-ratio: 1;
+    min-inline-size: 1.25em;
+    border-radius: 50%;
+    background-color: #d12021;
+  }
+
+  #sidebar >i::before {
+    content: "\D7";
+    color: #fff;
+    font-weight: bold;
+  }
+  }
+  @media (min-width: 1000px) {
+    .py-3 {
+      display: flex;
+
+    }
+    .container-screen{
+
+      margin-left: 27%;
+    }
+    .left-container {
+      width: 20%;
+    }
+
+  }
+  @media (min-width: 1400) {
+    .left-container{
+      margin-left: auto;
+
+    }
+    .left-container {
+      width: 24%;
+    }
+  }
+
+  @media only screen 
+    and (device-width: 390px) 
+    and (device-height: 844px) 
+    and (-webkit-device-pixel-ratio: 3) { 
+       .myaccordion { 
+          background: #fefefe;
+       max-width: 492px; 
+        box-shadow: 1px 2px 11px 11px rgb(0 0 0 / 6%);
+        border-radius: 10px;
+        margin-left: 0px;
+        overflow-y: auto;
+        height: 705px;
+        width: 97%;
+      }
+
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2.75) {
+    /* CSS */
+    .myaccordion { 
+        height: 705px;
+       
+      }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 4) {
+    /* CSS */
+     .myaccordion { 
+       
+        height: 612px;
+        width: 88%;
+       
+      }
+      .fa-times{
+        left: 80% !important;
+        top: 94% !important;
+      }
+}
+
+
+.sticky-icon  {
+  z-index:1;
+  position:fixed;
+  bottom: 5%;
+  right: 8%;
+  width:220px;
+  display:flex;
+  flex-direction:column;
+
+  color: #2196f3;
+  }  
+.sticky-icon i  {
+  transform:translate(160px,0px);
+  border-radius:50px 0px 0px 50px;
+  text-align:left;
+  margin:2px;
+  text-decoration:none;
+  text-transform:uppercase;
+  padding:10px;
+  font-size: 35px;
+  transition:all 0.8s;}
+.sticky-icon i:hover  {
+  color:#FFF;
+  transform:translate(0px,0px);}  
+.sticky-icon i:hover   {
+  transform:rotate(360deg);}

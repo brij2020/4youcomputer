@@ -22,17 +22,21 @@ import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import LeftContainer from './components/LeftContainer'
-
+import { showFilterAction } from './actions/filterActions'
+import {  useDispatch } from 'react-redux'
 const App = () => {
 	const [isLeft, setIsLeft]  = React.useState(false);
+  	const dispatch = useDispatch()
+
 	React.useEffect(() => {
-		console.log('window', window)
+		console.log('window delta',  window.location.pathname.includes('/products'))
 		if(window.location.pathname === '/' || window.location.pathname.includes('/products')) {
-			setIsLeft(true)
+			setIsLeft(true);
+			dispatch(showFilterAction(true))
 		} else {
-			setIsLeft(false)
+			dispatch(showFilterAction(false))
 		}
-	},[window]) 
+	},[window,window.location.pathname]) 
 	return (
 		<Router>
 			<Header />
@@ -40,7 +44,7 @@ const App = () => {
 			 { isLeft ? <div className="left-container" >
 				<LeftContainer />
 			 </div>: null}
-				<Container>
+				<div class="container container-screen">
 					{/* LoginScreen */}
 					<Route path='/login' component={LoginScreen} />
 					{/* RegisterScreen */}
@@ -95,7 +99,7 @@ const App = () => {
 					<Route path='/page/:pageNumber' component={HomeScreen} exact />
 					{/* HomeScreen */}
 					<Route path='/' component={HomeScreen} exact />
-				</Container>
+				</div>
 			</main>
 			<Footer />
 		</Router>

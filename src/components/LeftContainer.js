@@ -1,13 +1,16 @@
 import React,{ useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { addFilter } from '../actions/filterActions'
+import { addFilter, showFilterAction } from '../actions/filterActions'
+
 const LeftContainer = () => {
 
   
   const location = useLocation();
   const history = useHistory();
   const [isLeft, setIsLeft]  = React.useState(false);
+  const  { filterIcon } = useSelector( s => s.FilterReducer);
+  const [_showFilterIcon, _setFilterIcon] = React.useState(false)
   const filterList = useSelector(s => s.filterList) ?? []
   const [card,setCard] = React.useState([]);
   const [selectedCat, setCat ] = React.useState('');
@@ -30,6 +33,7 @@ const LeftContainer = () => {
 
 
   React.useEffect(() => {
+    let check = false;
       const query = new Proxy(new URLSearchParams(location.search),{
             get: (searchParams,prop) => searchParams.get(prop) 
           })
@@ -39,10 +43,25 @@ const LeftContainer = () => {
       } else {
         setCat('')
       }
+    if(typeof window != 'undefined') {
+     
+      check = /Mobi/i.test(window.navigator.userAgent)
+    }
     if(location.pathname === '/' || location.pathname.includes('/products')) {
-      setIsLeft(true)
+      // setIsLeft(true)
+      console.log('check un check', check)
+      if(check) {
+          dispatch(showFilterAction(false));
+          _setFilterIcon(true);
+      } else {
+        dispatch(showFilterAction(true))
+        _setFilterIcon(false);
+      }
+
     } else {
-      setIsLeft(false)
+      // setIsLeft(false);
+      dispatch(showFilterAction(false))
+      _setFilterIcon(true);
     }
   },[location.pathname]) 
   
@@ -57,15 +76,28 @@ const LeftContainer = () => {
     dispatch(addFilter({key:name, data: [value], checked: checked}))
   }
   
+  const handleFilterIcon = () => {
+    dispatch(showFilterAction(true)) 
+  }
   return (<>
-    <div id="sidebar" style={{padding: "5px"}}  style={{display: isLeft ? '': 'none'}}>
+    {
+      !filterIcon ? (<div class="sticky-icon">
+     <i class="fa fa-filter" aria-hidden="true" onClick={ handleFilterIcon }></i>
+    </div>): (null)
+    }
+    <div id="sidebar" style={{padding: "5px"}}  style={{display: filterIcon ? '': 'none'}}>
+    
+    
+    
+    
     <i class="fa fa-times" aria-hidden="true" style={{
     "position": "absolute",
-    "left": "90%",
+    "left": "87%",
     "top": "95%",
     "font-size": "25px",
     "color": "red"
   }}
+  onClick={ __ => dispatch(showFilterAction(false))  }
 ></i>
       <div id="accordion" class="myaccordion">
        {

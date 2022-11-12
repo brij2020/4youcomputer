@@ -2,8 +2,10 @@
 import {
 	FILTER_ADD_ITEM,
 	FILTER_CLEAR_ITEMS,
-	FILTER_REMOVE_ITEM
+	FILTER_REMOVE_ITEM,
+	FILTER_SHOW_HIDE
 } from '../constants/commonConstants'
+
 import { PRODUCT_LIST_SUCCESS_FILTER } from '../constants/productConstants'
 
 // Actions to add a single product to the cart
@@ -42,6 +44,14 @@ export const addFilter = ({ key, data, checked }) => async (dispatch, getState) 
 			fiters: filterReducer,
 			
 		},
+	})
+	
+}
+
+export const showFilterAction = (data) => async (dispatch) => {
+	dispatch({
+		type: FILTER_SHOW_HIDE,
+		payload: data,
 	})
 	
 }

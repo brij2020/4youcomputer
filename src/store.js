@@ -31,6 +31,9 @@ import {
 	orderDeliverReducer,
 } from './reducers/orderReducers'
 import { filterReducer } from './reducers/filterReducers'
+import { FilterReducer } from './reducers/filterIconReducer'
+
+
 const reducer = combineReducers({
 	productList: productListReducer,
 	productDetails: productDetailsReducer,
@@ -54,6 +57,7 @@ const reducer = combineReducers({
 	productReviewCreate: productReviewCreateReducer,
 	productTopRated: productTopRatedReducer,
 	filterList: filterListReducer,
+	FilterReducer,
 	filterReducer
 })
 
